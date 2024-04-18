@@ -16,16 +16,17 @@ Installation
 
 ..    (.venv) $ pip install bhtom2_scripts
 
-Executing tasks
+Executing tasks (API token required)
 ----------------
 The tasks can be performed by using the script ``bhtom2_scripts.py`` or by importing as a module class named :py:class:`BHTasks`.
 Before that however, the user must have a token for using BHTOM2 API. To get a token, see the `BHTOM2 API documentation <https://github.com/BHTOM-Team/bhtom2/blob/bhtom2-dev/Documentation/DocumentationAPI.md>`_.
 After getting the token, using the script or the module requires the user to pass the token to the script. This can be done in two ways:
  - Passing the token with an argument ``--token`` when running the script.
  - Creating a file named ``.env`` in the root directory of the project with the following content:
-::
-   BHTOM2_API_TOKEN=your_api_token
 
+'''
+   BHTOM2_API_TOKEN=your_api_token
+''''
 When user wants to import the module, the token must be passed as an argument to the class constructor.
 ::
    from bhtom2_scripts import BHTasks
@@ -48,6 +49,10 @@ To get the list of cameras, run:
 ::
    python3 bhtom2-scripts.py cam
 
+To get specification of a chosen camera, run:
+::
+   python3 bhtom2-scripts.py cam --prefix {prefix}
+
 Importing as a module
 ---------------------
 The module :py:mod:`bhtom2_scripts.py` contains a class named :py:class:`BHTasks` that can be used to perform the same tasks as the script.
@@ -55,7 +60,7 @@ The module :py:mod:`bhtom2_scripts.py` contains a class named :py:class:`BHTasks
 To get the list of observatories, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks()
+   tasks = BHTasks('your_api_token')
    tasks.do_obs()
 
 This will return a pandas DataFrame with the list of observatories.
@@ -63,7 +68,7 @@ This will return a pandas DataFrame with the list of observatories.
 To get the list of cameras, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks()
+   tasks = BHTasks('your_api_token')
    tasks.do_cam()
 
 This will return a pandas DataFrame with the list of cameras.
@@ -71,5 +76,5 @@ This will return a pandas DataFrame with the list of cameras.
 To get specification of a chosen camera, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks()
+   tasks = BHTasks('your_api_token')
    tasks.do_cam('prefix')
