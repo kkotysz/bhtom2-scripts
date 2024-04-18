@@ -26,7 +26,7 @@ After getting the token, using the script or the module requires the user to pas
 
 '''
    BHTOM2_API_TOKEN=your_api_token
-''''
+'''
 When user wants to import the module, the token must be passed as an argument to the class constructor.
 ::
    from bhtom2_scripts import BHTasks
