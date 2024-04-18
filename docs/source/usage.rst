@@ -39,11 +39,13 @@ Possible tasks are:
  - ``cam``: Get the list of cameras from the BHTOM2 database. Save the list to a CSV file.
  - ``map``: Generate a map with the observatories from the BHTOM2 database (NOT WORKING YET!)
 
-To get the list of observatories, run:
+Commands below are assuming you have ``.env`` file, otherwise pass ``--token YOUR_API_TOKEN`` argument to the script.
+
+To get the list of observatories:
 ::
    python3 bhtom2-scripts.py obs
 
-To get the list of cameras, run:
+To get the list of cameras:
 ::
    python3 bhtom2-scripts.py cam
 
