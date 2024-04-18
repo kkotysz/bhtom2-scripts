@@ -15,9 +15,9 @@ __version__ = '0.1.0'
 
 class BHTasks:
 
-    def __init__(self):
-        self.token = args.token
-        self.prefix = args.prefix if hasattr(args, 'prefix') else None
+    def __init__(self, token, prefix):
+        self.token = token
+        self.prefix = prefix
 
     def do_map(self):
         # obs = self.do_obs()
@@ -26,6 +26,9 @@ class BHTasks:
         return "Map generated."
 
     def do_cam(self):
+        '''
+        Get the camera setup for the telescope with given PREFIX.
+        '''
         obs = self.do_obs()
         cameras = obs['cameras']
 
@@ -53,9 +56,8 @@ class BHTasks:
 
     def do_obs(self):
         '''
-        Get the camera setup for the telescope with given PREFIX.
+        Get the list of observatories.
         '''
-
         headers = {
             'Authorization': f'Token {self.token}',
             'Content-Type': 'application/json',
@@ -107,6 +109,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    bhtasks = BHTasks()
+    token = args.token
+    prefix = args.prefix if hasattr(args, 'prefix') else None
+
+    bhtasks = BHTasks(token, prefix)
     result = bhtasks.solve_for(parser)
     print(result)
