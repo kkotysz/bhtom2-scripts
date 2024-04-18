@@ -14,4 +14,4 @@ Usage
 
 Executing tasks
 ----------------
-The tasks can be performed by using the script ``bhtom2-scripts.py`` or by importing as a module class named :py:class:`BHTasks`.
+The tasks can be performed by using the script ``bhtom2-scripts.py`` or by importing as a module class named :py:func:`BHTasks`.
