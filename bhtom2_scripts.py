@@ -15,9 +15,8 @@ __version__ = '0.1.0'
 
 class BHTasks:
 
-    def __init__(self, token, prefix):
+    def __init__(self, token):
         self.token = token
-        self.prefix = prefix
 
     def do_map(self):
         # obs = self.do_obs()
@@ -25,21 +24,21 @@ class BHTasks:
         
         return "Map generated."
 
-    def do_cam(self):
+    def do_cam(self, prefix=None):
         '''
         Get the camera setup for the telescope with given PREFIX.
         '''
         obs = self.do_obs()
         cameras = obs['cameras']
 
-        if self.prefix:
+        if prefix:
             # Use list comprehension along with the next() function to find the first dictionary with the specified prefix
-            matching_camera = next((camera_dict for camera in cameras for camera_dict in camera if camera_dict.get('prefix') == self.prefix), None)
+            matching_camera = next((camera_dict for camera in cameras for camera_dict in camera if camera_dict.get('prefix') == prefix), None)
             
             if matching_camera:
-                logging.info(f"Matching dictionary found for the specified prefix: {self.prefix}")
+                logging.info(f"Matching dictionary found for the specified prefix: {prefix}")
             else:
-                logging.error(f"No matching dictionary found for the specified prefix: {self.prefix}")
+                logging.error(f"No matching dictionary found for the specified prefix: {prefix}")
                 exit()
 
             df_camera = pd.DataFrame(matching_camera, index=[0])
@@ -78,7 +77,10 @@ class BHTasks:
     def solve_for(self, parser):
         do = "do_{name}".format(name=args.task)
         if hasattr(self, do) and callable(func := getattr(self, do)):
-            result = func()
+            if hasattr(args, 'prefix'):
+                result = func(args.prefix)
+            else:
+                result = func()
             return result
         else:
             result = parser.print_help()
@@ -102,7 +104,7 @@ if __name__ == '__main__':
 
     # subparser for getting the camera list
     parser_cam = subparsers.add_parser('cam', help='Get the list of cameras.')
-    parser_cam.add_argument('--prefix', type=str, default=False, help='Prefix of the telescope/camera system.') # optional argument
+    parser_cam.add_argument('--prefix', type=str, default=None, help='Prefix of the telescope/camera system.') # optional argument
 
     # subparser for generating a map
     parser_map = subparsers.add_parser('map', help='Generate a map of the observatories.')
@@ -112,6 +114,6 @@ if __name__ == '__main__':
     token = args.token
     prefix = args.prefix if hasattr(args, 'prefix') else None
 
-    bhtasks = BHTasks(token, prefix)
+    bhtasks = BHTasks(token)
     result = bhtasks.solve_for(parser)
     print(result)
