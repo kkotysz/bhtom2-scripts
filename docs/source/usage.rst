@@ -10,7 +10,7 @@ Installation
    - python-dotenv
    - pandas
 
-.. To use bhtom2-scripts, first install it using pip:
+.. To use bhtom2_scripts, first install it using pip:
 
 .. .. code-block:: console
 
@@ -43,15 +43,15 @@ Commands below are assuming you have ``.env`` file, otherwise pass ``--token YOU
 
 To get the list of observatories:
 ::
-   python3 bhtom2-scripts.py obs
+   python3 bhtom2_scripts.py obs
 
 To get the list of cameras:
 ::
-   python3 bhtom2-scripts.py cam
+   python3 bhtom2_scripts.py cam
 
 To get specification of a chosen camera, run:
 ::
-   python3 bhtom2-scripts.py cam --prefix CAMERA_PREFIX
+   python3 bhtom2_scripts.py cam --prefix CAMERA_PREFIX
 
 Importing as a module
 ---------------------
