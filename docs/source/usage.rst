@@ -24,9 +24,8 @@ After getting the token, using the script or the module requires the user to pas
  - Passing the token with an argument ``--token`` when running the script.
  - Creating a file named ``.env`` in the root directory of the project with the following content:
 
-'''
-   BHTOM2_API_TOKEN=your_api_token
-'''
+   **BHTOM2_API_TOKEN=your_api_token**
+
 When user wants to import the module, the token must be passed as an argument to the class constructor.
 ::
    from bhtom2_scripts import BHTasks
