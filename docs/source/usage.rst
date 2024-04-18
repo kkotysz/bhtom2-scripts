@@ -20,4 +20,18 @@ The tasks can be performed by using the script ``bhtom2-scripts.py`` or by impor
 
 .. Using the script
 .. ----------------
+Tasks can be executed by running the script ``bhtom2-scripts.py`` with the desired task as argument.
+Possible tasks are:
+ - ``obs``: Get the list of observatories from the BHTOM2 database.
+ - ``cam``: Get the list of cameras from the BHTOM2 database.
+ - ``map``: Generate a map with the observatories from the BHTOM2 database (NOT WORKING YET!)
 
+To get the list of observatories, run:
+::
+
+   $ bhtom2-scripts.py obs
+
+To get the list of cameras, run:
+::
+
+   $ bhtom2-scripts.py cam
