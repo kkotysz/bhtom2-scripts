@@ -23,7 +23,6 @@ Before that however, the user must have a token for using BHTOM2 API. To get a t
 After getting the token, using the script or the module requires the user to pass the token to the script. This can be done in two ways:
  - Passing the token with an argument ``--token`` when running the script.
  - Creating a file named ``.env`` in the root directory of the project with the following content:
-
    **BHTOM2_API_TOKEN=your_api_token**
 
 When user wants to import the module, the token must be passed as an argument to the class constructor.
@@ -36,8 +35,8 @@ Using the script
 ----------------
 Running the script ``bhtom2_scripts.py`` with the desired task as argument.
 Possible tasks are:
- - ``obs``: Get the list of observatories from the BHTOM2 database.
- - ``cam``: Get the list of cameras from the BHTOM2 database.
+ - ``obs``: Get the list of observatories from the BHTOM2 database. Save the list to a CSV file.
+ - ``cam``: Get the list of cameras from the BHTOM2 database. Save the list to a CSV file.
  - ``map``: Generate a map with the observatories from the BHTOM2 database (NOT WORKING YET!)
 
 To get the list of observatories, run:
@@ -50,7 +49,7 @@ To get the list of cameras, run:
 
 To get specification of a chosen camera, run:
 ::
-   python3 bhtom2-scripts.py cam --prefix {prefix}
+   python3 bhtom2-scripts.py cam --prefix CAMERA_PREFIX
 
 Importing as a module
 ---------------------
@@ -76,4 +75,4 @@ To get specification of a chosen camera, run:
 ::
    from bhtom2_scripts import BHTasks
    tasks = BHTasks('your_api_token')
-   tasks.do_cam('prefix')
+   tasks.do_cam('CAMERA_PREFIX')
