@@ -23,11 +23,13 @@ Before that however, the user must have a token for using BHTOM2 API. To get a t
 After getting the token, using the script or the module requires the user to pass the token to the script. This can be done in two ways:
  - Passing the token with an argument ``--token`` when running the script.
  - Creating a file named ``.env`` in the root directory of the project with the following content:
-
 ::
    BHTOM2_API_TOKEN=your_api_token
 
 When user wants to import the module, the token must be passed as an argument to the class constructor.
+::
+   from bhtom2_scripts import BHTasks
+   tasks = BHTasks('your_api_token')
 
 
 Using the script
