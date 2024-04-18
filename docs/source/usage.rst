@@ -28,7 +28,7 @@ After getting the token, using the script or the module requires the user to pas
 When user wants to import the module, the token must be passed as an argument to the class constructor.
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks('your_api_token')
+   tasks = BHTasks('YOUR_API_TOKEN')
 
 
 Using the script
@@ -58,7 +58,7 @@ The module :py:mod:`bhtom2_scripts.py` contains a class named :py:class:`BHTasks
 To get the list of observatories, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks('your_api_token')
+   tasks = BHTasks('YOUR_API_TOKEN')
    tasks.do_obs()
 
 This will return a pandas DataFrame with the list of observatories.
@@ -66,7 +66,7 @@ This will return a pandas DataFrame with the list of observatories.
 To get the list of cameras, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks('your_api_token')
+   tasks = BHTasks('YOUR_API_TOKEN')
    tasks.do_cam()
 
 This will return a pandas DataFrame with the list of cameras.
@@ -74,5 +74,5 @@ This will return a pandas DataFrame with the list of cameras.
 To get specification of a chosen camera, run:
 ::
    from bhtom2_scripts import BHTasks
-   tasks = BHTasks('your_api_token')
+   tasks = BHTasks('YOUR_API_TOKEN')
    tasks.do_cam('CAMERA_PREFIX')
