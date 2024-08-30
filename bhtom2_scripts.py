@@ -80,7 +80,7 @@ class BHTasks:
                 observatory_list = pd.concat([observatory_list, pd.json_normalize(response.json())], ignore_index=True)
         observatory_list = pd.DataFrame(observatory_list['data'][0])
         if args.task != 'cam':
-            cols_to_exclude = ['id', 'comment', 'cameras']
+            cols_to_exclude = ['comment', 'cameras']
             all_cols = observatory_list.columns
             observatory_list.to_csv('observatories.csv', index=False, columns=[col for col in all_cols if col not in cols_to_exclude])
         return observatory_list
