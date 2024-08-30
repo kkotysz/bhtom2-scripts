@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 This script is used to get the camera setup for the telescope with given PREFIX.
 This uses API of BH-TOM2.
