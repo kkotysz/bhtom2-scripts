@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 This script is used to get the camera setup for the telescope with given PREFIX.
 This uses API of BH-TOM2.
@@ -66,10 +67,22 @@ class BHTasks:
 
         api_url = f'https://bh-tom2.astrolabs.pl/observatory/getObservatoryList/'
         response = requests.post(api_url, headers=headers)
+        if response.status_code != 200:
+            logging.error(f"Error: {response.status_code}")
+            exit()
         observatory_list = pd.json_normalize(response.json())
-        cols_to_exclude = ['id', 'comment', 'cameras']
-        all_cols = observatory_list.columns
-        observatory_list.to_csv('observatories.csv', index=False, columns=[col for col in all_cols if col not in cols_to_exclude])
+        if observatory_list['num_pages'][0] > 1:
+            for page in range(2, observatory_list['num_pages']+1):
+                response = requests.post(api_url, headers=headers, data={'page': page})
+                if response.status_code != 200:
+                    logging.error(f"Error: {response.status_code}")
+                    exit()
+                observatory_list = pd.concat([observatory_list, pd.json_normalize(response.json())], ignore_index=True)
+        observatory_list = pd.DataFrame(observatory_list['data'][0])
+        if args.task != 'cam':
+            cols_to_exclude = ['id', 'comment', 'cameras']
+            all_cols = observatory_list.columns
+            observatory_list.to_csv('observatories.csv', index=False, columns=[col for col in all_cols if col not in cols_to_exclude])
         return observatory_list
 
 
